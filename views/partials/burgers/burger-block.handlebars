@@ -1,0 +1,10 @@
+{{!-- for the devoured or delete button --}}
+<li>
+    {{name}}
+
+    <button class="change-side" data-id="{{id}}" data-news="{{devoured}}">
+        {{#if devoured}}Devour it!{{/if}}
+    </button>
+
+    <button class="delete-burger" data-id="{{this.id}}">Delete!</button>
+</li>

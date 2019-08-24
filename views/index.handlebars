@@ -1,1 +1,35 @@
 {{!-- create buttons here that will submit the users input  --}}
+
+<header><a href="/assets/img/burgerpic.png"></a></header>
+
+<h1>Eat-Da-Burger!</h1>
+
+{{!-- new burgers or current burgers in db --}}
+<ul>
+    {{#each burgers}}
+      {{#unless devoured}}
+        {{> burgers/burger-block devoured=true}}
+      {{/unless}}
+    {{/each}}
+</ul>
+
+{{!-- burgers that were devoured in db --}}
+<ul>
+    {{#each burgers}}
+      {{#if devoured}}
+        {{> burgers/burger-block devoured=false}}
+      {{/if}}
+    {{/each}}
+</ul>
+
+{{!-- form and button for adding burger! --}}
+<form class="create-form">
+
+    <div class="form-group">
+        <label for="br"></label>
+        <input type="text" id="br" name="name">
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
+
