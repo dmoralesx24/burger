@@ -1,6 +1,6 @@
 {{!-- create buttons here that will submit the users input  --}}
 
-<header><a href="/assets/img/burgerpic.png"></a></header>
+<header><a href="/public/assets/img/burgerpic.png"></a></header>
 
 <h1>Eat-Da-Burger!</h1>
 
@@ -8,7 +8,7 @@
 <ul>
     {{#each burgers}}
       {{#unless devoured}}
-        {{> burgers/burger-block devoured=true}}
+        {{> burgers/burger-block devoured=false}}
       {{/unless}}
     {{/each}}
 </ul>
@@ -17,7 +17,7 @@
 <ul>
     {{#each burgers}}
       {{#if devoured}}
-        {{> burgers/burger-block devoured=false}}
+        {{> burgers/burger-block devoured=true}}
       {{/if}}
     {{/each}}
 </ul>

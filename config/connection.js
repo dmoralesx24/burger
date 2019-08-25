@@ -1,7 +1,7 @@
 // import this file into ORM file
-
+let mysql = require("mysql");
 // set up MYSQL connection.
-const connection = mysql.createConnection({
+let connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",

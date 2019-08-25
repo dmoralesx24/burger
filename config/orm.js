@@ -2,7 +2,7 @@
 // insertOne()
 // updateOne() 
 // import MYSQL connection
-const connection = require("../config/connection");
+let connection = require("../config/connection");
 
 // this is to print SQL syntax for 3 question marks for 3 unknown values 
 function questionMarks(num) {
@@ -36,7 +36,7 @@ function objSql(ob) {
 // object for all of our SQL statements
 
 let orm = {
-    selectAll: function(tableInput, cb) {
+    all: function(tableInput, cb) {
         let queryString = "SELECT * FROM " + tableInput + ";";
         connection.query(queryString, function(err, results) {
             if (err) {
@@ -45,7 +45,7 @@ let orm = {
             cb(results);
         });
     },
-    insertOne: function(table, col, vals, cb) {
+    create: function(table, cols, vals, cb) {
         let queryString = "INSERT INTO " + table;
 
         queryString += " (";
@@ -65,7 +65,7 @@ let orm = {
             cb(results);
         });
     },
-    updateOne: function(table, objColVals, condition, cb) {
+    update: function(table, objColVals, condition, cb) {
         let queryString = "UPDATE " + table;
 
         queryString += " SET ";
@@ -82,7 +82,7 @@ let orm = {
             cb(result)
         });
     },
-    deleteOne: function(table, condition, cb) {
+    delete: function(table, condition, cb) {
         var queryString = "DELETE FROM " + table;
         queryString += " WHERE ";
         queryString += condition;

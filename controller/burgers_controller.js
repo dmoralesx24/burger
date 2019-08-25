@@ -1,14 +1,14 @@
 // import the burger.js file
 // create router for this file and then export it at the end
-const express = require("express");
+let express = require("express");
 
 let router = express.Router();
 
 // import model to use the database info.
-const burger = require("../model/burger.js");
+let burger = require("../model/burger.js");
 
 router.get("/", function(req, res) {
-    burger.selectAll(function(data) {
+    burger.all(function(data) {
         let hbsObject = {
             burgers: data
         };
@@ -18,7 +18,7 @@ router.get("/", function(req, res) {
 });
 
 router.post("/api/burgers", function(req, res) {
-    burger.insertOne([
+    burger.create([
         "name", "devoured"
     ], [
         req.body.name, req.body.devoured
