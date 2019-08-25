@@ -1,23 +1,25 @@
 {{!-- create buttons here that will submit the users input  --}}
 
-<header><a href="/public/assets/img/burgerpic.png"></a></header>
-
+<img src="assets/img/burgerpic.png" alt="burger pic">
 <h1>Eat-Da-Burger!</h1>
+<p>Enter a burger you want to eat Click the "Submit" button</p>
 
 {{!-- new burgers or current burgers in db --}}
-<ul>
+
+<ul id="list1">
     {{#each burgers}}
       {{#unless devoured}}
-        {{> burgers/burger-block devoured=false}}
+        {{> burgers/burger-block devoured=true}}
       {{/unless}}
     {{/each}}
 </ul>
 
 {{!-- burgers that were devoured in db --}}
-<ul>
+
+<ul id="list2">
     {{#each burgers}}
       {{#if devoured}}
-        {{> burgers/burger-block devoured=true}}
+        {{> burgers/burger-block devoured=false}}
       {{/if}}
     {{/each}}
 </ul>
@@ -30,6 +32,6 @@
         <input type="text" id="br" name="name">
     </div>
 
-    <button type="submit">Submit</button>
+    <button type="submit" id="newb">Submit</button>
 </form>
 

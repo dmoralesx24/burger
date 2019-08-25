@@ -5,7 +5,7 @@ let express = require("express");
 let router = express.Router();
 
 // import model to use the database info.
-let burger = require("../model/burger.js");
+let burger = require("../models/burger.js");
 
 router.get("/", function(req, res) {
     burger.all(function(data) {
@@ -19,9 +19,9 @@ router.get("/", function(req, res) {
 
 router.post("/api/burgers", function(req, res) {
     burger.create([
-        "name", "devoured"
+        "name"
     ], [
-        req.body.name, req.body.devoured
+        req.body.name
     ], function(result) {
         res.json({ id: result.insertId });
     });

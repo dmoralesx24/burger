@@ -2,10 +2,10 @@
 // insertOne()
 // updateOne() 
 // import MYSQL connection
-let connection = require("../config/connection");
+let connection = require("../config/connection.js");
 
 // this is to print SQL syntax for 3 question marks for 3 unknown values 
-function questionMarks(num) {
+function printQuestionMarks(num) {
     let arr = [];
 
     for (let i = 0; i < num; i++) {
@@ -16,7 +16,7 @@ function questionMarks(num) {
 }
 
 // helper function to convert object key/value pairs to SQL syntax
-function objSql(ob) {
+function objToSql(ob) {
     let arr = [];
 
     for (let key in ob) {
@@ -38,11 +38,11 @@ function objSql(ob) {
 let orm = {
     all: function(tableInput, cb) {
         let queryString = "SELECT * FROM " + tableInput + ";";
-        connection.query(queryString, function(err, results) {
+        connection.query(queryString, function(err, result) {
             if (err) {
                 throw err;
             }
-            cb(results);
+            cb(result);
         });
     },
     create: function(table, cols, vals, cb) {
@@ -50,26 +50,26 @@ let orm = {
 
         queryString += " (";
         queryString += cols.toString();
-        queryString += ") "
-        queryString += "VALUES ("
-        queryString += questionMarks(vals.length);
+        queryString += ") ";
+        queryString += "VALUES (";
+        queryString += printQuestionMarks(vals.length);
         queryString += ") ";
 
         console.log(queryString);
 
-        connection.query(queryString, vals, function(err, results) {
+        connection.query(queryString, vals, function(err, result) {
             if (err) {
                 throw err;
             }
 
-            cb(results);
+            cb(result);
         });
     },
     update: function(table, objColVals, condition, cb) {
         let queryString = "UPDATE " + table;
 
         queryString += " SET ";
-        queryString += objSql(objColVals);
+        queryString += objToSql(objColVals);
         queryString += " WHERE ";
         queryString += condition;
 

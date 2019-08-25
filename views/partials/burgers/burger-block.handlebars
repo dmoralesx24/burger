@@ -1,10 +1,22 @@
 {{!-- for the devoured or delete button --}}
 <li>
+  {{#if devoured}}
     {{name}}
 
-    <button class="change-side" data-id="{{id}}" data-news="{{devoured}}">
-        {{#if devoured}}Devour it!{{/if}}
-    </button>
+    <button class="change-side" id="dev" data-id="{{id}}" data-newside="{{devoured}}">
+       Devour it!
+    </button> 
 
-    <button class="delete-burger" data-id="{{this.id}}">Delete!</button>
+    <button class="delete-burger" id="del" data-id="{{this.id}}">
+        Delete!
+    </button>
+</li>
+
+<li>
+    {{else}}
+        {{name}}
+        <button class="delete-burger" id="dele" data-id="{{this.id}}">
+            Delete!
+        </button>
+    {{/if}}
 </li>
